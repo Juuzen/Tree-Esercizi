@@ -1,0 +1,53 @@
+<!--
+  Esercizio 2: Creare una funzione, che dato in ingresso il nome di una figura geometrica e il relativo (lato/i o raggio) 
+  calcola l’area. ES: area(cerchio,5). 
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
+    />
+
+    <script src="index.js"></script>
+    <title>Esercizio 2</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-6 offset-3 text-center">
+          <h1 class="mt-5 mb-2">Esercizio 2</h1>
+          <h2 class="mb-3">Seleziona la tua figura</h2>
+          <select class="form-control mb-3" id="shapeSelect">
+            <option value="" selected disabled>--Scegli la figura--</option>
+            <option value="circle" id="circleOption">Cerchio</option>
+            <option value="square" id="squareOption">Quadrato</option>
+            <option value="triangle" id="triangleOption">
+              <span>Triangolo (equilatero)</span>
+            </option>
+          </select>
+          <input
+            class="form-control mb-3"
+            type="number"
+            id="shapeSideLength"
+            placeholder="Lunghezza del lato"
+          />
+          <button class="btn btn-primary" onclick="calculateArea()">
+            Calcola area
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div
+          class="col-12 col-md-6 offset-3 text-center my-3"
+          id="resultCol"
+        ></div>
+      </div>
+    </div>
+  </body>
+</html>
