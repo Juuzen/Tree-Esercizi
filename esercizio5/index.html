@@ -15,7 +15,7 @@
   <body>
     <div class="container" id="primary-content">
       <div class="row mt-3">
-        <div class="col-12">
+        <div class="col-12 primary-title">
           <p class="h1 text-center">Esercizio 5</p>
         </div>
       </div>
@@ -45,10 +45,7 @@
         <!-- Colonna dei contatti -->
         <div class="col-12 col-sm-4">
           <p class="h3">I miei contatti: <span id="contactCounter"></span></p>
-          <div
-            class="container list-group overflow-auto my-3 p-0"
-            id="contactBook"
-          >
+          <div class="list-group overflow-auto my-3 p-0" id="contactBook">
             <!--
             <div
               class="d-flex justify-content-between align-items-center list-group-item contactCard"
@@ -67,6 +64,27 @@
         <!-- Ricerca -->
         <div class="col-12 col-sm-4">
           <p class="h3">Cerca</p>
+          <div class="form-group">
+            <label>Cerca (per CF):</label>
+            <input type="text" class="form-control" id="searchForm" />
+          </div>
+          <div class="search-button-row d-flex justify-content-between">
+            <button
+              class="btn btn-primary flex-grow-1 search-button"
+              onclick="triggerSearch()"
+            >
+              Cerca
+            </button>
+            <button
+              class="btn btn-secondary flex-grow-1 search-button"
+              disabled
+              id="resetSearchButton"
+              onclick="flushSearch()"
+            >
+              Resetta
+            </button>
+          </div>
+          <div id="foundContact"></div>
         </div>
       </div>
     </div>

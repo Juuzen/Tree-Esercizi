@@ -13,6 +13,11 @@ function flushForms() {
   document.getElementById("formCF").value = "";
 }
 
+function flushSearch() {
+  document.getElementById("foundContact").textContent = "";
+  document.getElementById("resetSearchButton").disabled = true;
+}
+
 function updateCounter() {
   peopleCounter = anagrafica.length;
   document.getElementById("contactCounter").innerHTML = peopleCounter;
@@ -30,12 +35,58 @@ function findContact(key) {
   return response;
 }
 
+function showContact(persona, tagElement) {
+  let textSpan = document.createElement("span");
+  textSpan.innerHTML = "La persona cercata è:";
+  tagElement.appendChild(textSpan);
+
+  let contactCardDiv = document.createElement("div");
+  contactCardDiv.classList.add(
+    "d-flex",
+    "justify-content-between",
+    "align-items-center",
+    "list-group-item",
+    "contactCard"
+  );
+  tagElement.appendChild(contactCardDiv);
+
+  let contactInfoList = document.createElement("ul");
+  contactInfoList.classList.add("contactInfoList");
+  contactCardDiv.appendChild(contactInfoList);
+
+  for (let elem in persona) {
+    let contactListItem = document.createElement("li");
+    if (elem == "cf") {
+      contactListItem.classList.add("cf-info");
+    }
+    contactListItem.innerHTML = persona[elem];
+    contactInfoList.appendChild(contactListItem);
+  }
+}
+
+function triggerSearch() {
+  let cf = document.getElementById("searchForm").value;
+  console.log(cf);
+  let foundContact = document.getElementById("foundContact");
+  foundContact.textContent = "";
+  let index = findContact(cf);
+  console.log(index);
+  if (index >= 0) {
+    showContact(anagrafica[index], foundContact);
+    document.getElementById("resetSearchButton").disabled = false;
+  } else {
+    alert("Non è presente nessuna persona con questo CF!");
+  }
+}
+
+/*
 function test(cf) {
   let value = findContact(cf);
   console.log(value);
 }
+*/
 
-/*
+/* test2
 function test2() {
   anagrafica.forEach((persona) => {
     for (let elem in persona) {
@@ -57,6 +108,39 @@ function triggerDelete(cf) {
   }
 }
 
+function createContact(persona, tagElement) {
+  let contactCardDiv = document.createElement("div");
+  contactCardDiv.classList.add(
+    "d-flex",
+    "justify-content-between",
+    "align-items-center",
+    "list-group-item",
+    "contactCard"
+  );
+  tagElement.appendChild(contactCardDiv);
+
+  let contactInfoList = document.createElement("ul");
+  contactInfoList.classList.add("contactInfoList");
+  contactCardDiv.appendChild(contactInfoList);
+
+  for (let elem in persona) {
+    let contactListItem = document.createElement("li");
+    if (elem == "cf") {
+      contactListItem.classList.add("cf-info");
+    }
+    contactListItem.innerHTML = persona[elem];
+    contactInfoList.appendChild(contactListItem);
+  }
+
+  let deleteButton = document.createElement("button");
+  deleteButton.classList.add("btn", "btn-danger");
+  deleteButton.innerHTML = "X";
+  deleteButton.onclick = function () {
+    triggerDelete(persona.cf);
+  };
+  contactCardDiv.appendChild(deleteButton);
+}
+
 function updateContactBook() {
   let contactBook = document.getElementById("contactBook");
   contactBook.textContent = "";
@@ -66,33 +150,7 @@ function updateContactBook() {
 function showContactBook() {
   let contactBook = document.getElementById("contactBook");
   anagrafica.forEach((persona) => {
-    let contactCardDiv = document.createElement("div");
-    contactCardDiv.classList.add(
-      "d-flex",
-      "justify-content-between",
-      "align-items-center",
-      "list-group-item",
-      "contactCard"
-    );
-    contactBook.appendChild(contactCardDiv);
-
-    let contactInfoList = document.createElement("ul");
-    contactInfoList.classList.add("contactInfoList");
-    contactCardDiv.appendChild(contactInfoList);
-
-    for (let elem in persona) {
-      let contactListItem = document.createElement("li");
-      contactListItem.innerHTML = persona[elem];
-      contactInfoList.appendChild(contactListItem);
-    }
-
-    let deleteButton = document.createElement("button");
-    deleteButton.classList.add("btn", "btn-danger");
-    deleteButton.innerHTML = "X";
-    deleteButton.onclick = function () {
-      triggerDelete(persona.cf);
-    };
-    contactCardDiv.appendChild(deleteButton);
+    createContact(persona, contactBook);
   });
 }
 

@@ -3,8 +3,24 @@
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
+.primary-title {
+  padding: 20px;
+}
+
 .cf-error {
   border: 1px solid red !important;
+}
+
+.cf-info {
+  font-weight: bold;
+}
+
+#foundContact {
+  margin-top: 8px;
+}
+
+.search-button {
+  margin: 4px;
 }
 
 #contactCounter {
