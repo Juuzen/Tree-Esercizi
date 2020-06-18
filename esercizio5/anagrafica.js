@@ -1,3 +1,6 @@
+let anagrafica = [];
+let peopleCounter = 0;
+
 function Persona(name, surname, cf) {
   this.name = name;
   this.surname = surname;
@@ -15,7 +18,16 @@ function writeOnDB(name, surname, cf) {
   anagrafica.push(persona);
   window.localStorage.setItem("contatti", JSON.stringify(anagrafica));
   flushForms();
-  document.getElementById("cfInput").classList.remove("cf-error");
+  if (document.getElementById("formCF").classList.contains("cf-error")) {
+    document.getElementById("formCF").classList.remove("cf-error");
+  }
+  updateCounter();
+  alert("Inserimento effettuato!");
+}
+
+function updateCounter() {
+  peopleCounter = anagrafica.length;
+  document.getElementById("contactCounter").innerHTML = peopleCounter;
 }
 
 function sendDataDB() {
@@ -35,31 +47,30 @@ function sendDataDB() {
       anagrafica.forEach((persona) => {
         if (persona.cf == cfInput) {
           found = true;
-          alert("Esiste già una persona con questo CF!");
           return;
         }
       });
       if (!found) {
         // Nuovo inserimento
         writeOnDB(nameInput, surnameInput, cfInput);
-        alert("Inserimento effettuato!");
       } else {
         alert("Esiste già una persona con questo CF!");
-        document.getElementById("cfInput").classList.add("cf-error");
+        if (!document.getElementById("formCF").classList.contains("cf-error")) {
+          document.getElementById("formCF").classList.add("cf-error");
+        }
       }
     } else {
       // Nuovo inserimento
       writeOnDB(nameInput, surnameInput, cfInput);
-      alert("Inserimento effettuato!");
     }
   }
 }
-
-let anagrafica = [];
 
 window.onload = () => {
   if (window.localStorage.getItem("contatti") != null) {
     let tempArray = JSON.parse(window.localStorage.getItem("contatti"));
     anagrafica = tempArray;
+    peopleCounter = anagrafica.length;
   }
+  document.getElementById("contactCounter").innerHTML = peopleCounter;
 };

@@ -6,3 +6,9 @@
 .cf-error {
   border: 1px solid red !important;
 }
+
+#contactCounter {
+  background-color: green;
+  color: white;
+  padding: 5px;
+}
