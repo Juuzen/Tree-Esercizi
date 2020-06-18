@@ -4,10 +4,18 @@ function Persona(name, surname, cf) {
   this.cf = cf;
 }
 
+function flushForms() {
+  document.getElementById("formName").value = "";
+  document.getElementById("formSurname").value = "";
+  document.getElementById("formCF").value = "";
+}
+
 function writeOnDB(name, surname, cf) {
   let persona = new Persona(name, surname, cf);
   anagrafica.push(persona);
   window.localStorage.setItem("contatti", JSON.stringify(anagrafica));
+  flushForms();
+  document.getElementById("cfInput").classList.remove("cf-error");
 }
 
 function sendDataDB() {
@@ -35,15 +43,15 @@ function sendDataDB() {
         // Nuovo inserimento
         writeOnDB(nameInput, surnameInput, cfInput);
         alert("Inserimento effettuato!");
+      } else {
+        alert("Esiste già una persona con questo CF!");
+        document.getElementById("cfInput").classList.add("cf-error");
       }
     } else {
       // Nuovo inserimento
       writeOnDB(nameInput, surnameInput, cfInput);
       alert("Inserimento effettuato!");
     }
-    document.getElementById("formName").value = "";
-    document.getElementById("formSurname").value = "";
-    document.getElementById("formCF").value = "";
   }
 }
 
