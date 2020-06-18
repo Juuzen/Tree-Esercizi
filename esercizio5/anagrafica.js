@@ -28,20 +28,22 @@ function sendDataDB() {
       if (!found) {
         let persona = new Persona(nameInput, surnameInput, cfInput);
         anagrafica.push(persona);
-        window.localStorage.setItem("contatt", JSON.stringify(anagrafica));
+        window.localStorage.setItem("contatti", JSON.stringify(anagrafica));
       }
     } else {
       // Inserimento della persona in anagrafica
       let persona = new Persona(nameInput, surnameInput, cfInput);
       anagrafica.push(persona);
-      window.localStorage.setItem("contatt", JSON.stringify(anagrafica));
+      window.localStorage.setItem("contatti", JSON.stringify(anagrafica));
     }
   }
 }
 
 let anagrafica = [];
 
-//let p = new Persona("Valentino", "Rossi", "VR1");
-//let p2 = new Persona("Mario", "Bianchi", "MB2");
-//anagrafica.push(p);
-//anagrafica.push(p2);
+window.onload = () => {
+  if (window.localStorage.getItem("contatti") != null) {
+    let tempArray = JSON.parse(window.localStorage.getItem("contatti"));
+    anagrafica = tempArray;
+  }
+};
