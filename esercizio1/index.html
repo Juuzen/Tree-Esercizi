@@ -2,15 +2,32 @@
   Esercizio 1: 
 -->
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+<html>
+  <head>
+    <script src="index.js"></script>
+    <title>Province</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
+    />
+  </head>
 
-<body>
-  
-</body>
+  <body>
+    <div class="container-fluid bg-warning vh-100">
+      <div class="row">
+        <div class="col-12 col-md-6 offset-md-3 text-center">
+          <h1 class="my-5">Seleziona la tua provincia</h1>
+          <select class="form-control" id="cityForm" onchange="createSelect()">
+            <option disabled selected>--- Seleziona una provincia ---</option>
+            <option value="Milano" id="Milano">Milano</option>
+            <option value="Napoli" id="Napoli">Napoli</option>
+            <option value="Catania" id="Catania">Catania</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div id="contentSelectComuni" class="col-12 col-md-6 offset-md-3"></div>
+      </div>
+    </div>
+  </body>
 </html>
