@@ -13,6 +13,102 @@ function flushForms() {
   document.getElementById("formCF").value = "";
 }
 
+function updateCounter() {
+  peopleCounter = anagrafica.length;
+  document.getElementById("contactCounter").innerHTML = peopleCounter;
+}
+
+function findContact(key) {
+  // index indica la posizione nell'array del codice fiscale della persona da eliminare (resta -1 se il codice fiscale non è presente)
+  let response = -1;
+  anagrafica.forEach((persona, index) => {
+    if (persona.cf == key) {
+      response = index;
+      return;
+    }
+  });
+  return response;
+}
+
+function test(cf) {
+  let value = findContact(cf);
+  console.log(value);
+}
+
+/*
+function test2() {
+  anagrafica.forEach((persona) => {
+    for (let elem in persona) {
+      console.log(persona[elem]);
+    }
+  });
+}
+*/
+
+/* Rubrica */
+
+function triggerDelete(cf) {
+  let response = window.confirm(
+    "Sei sicuro di voler cancellare la persona con CF: " + cf + "?"
+  );
+  if (response) {
+    let index = findContact(cf);
+    deleteContact(index);
+  }
+}
+
+function updateContactBook() {
+  let contactBook = document.getElementById("contactBook");
+  contactBook.textContent = "";
+  showContactBook();
+}
+
+function showContactBook() {
+  let contactBook = document.getElementById("contactBook");
+  anagrafica.forEach((persona) => {
+    let contactCardDiv = document.createElement("div");
+    contactCardDiv.classList.add(
+      "d-flex",
+      "justify-content-between",
+      "align-items-center",
+      "list-group-item",
+      "contactCard"
+    );
+    contactBook.appendChild(contactCardDiv);
+
+    let contactInfoList = document.createElement("ul");
+    contactInfoList.classList.add("contactInfoList");
+    contactCardDiv.appendChild(contactInfoList);
+
+    for (let elem in persona) {
+      let contactListItem = document.createElement("li");
+      contactListItem.innerHTML = persona[elem];
+      contactInfoList.appendChild(contactListItem);
+    }
+
+    let deleteButton = document.createElement("button");
+    deleteButton.classList.add("btn", "btn-danger");
+    deleteButton.innerHTML = "X";
+    deleteButton.onclick = function () {
+      triggerDelete(persona.cf);
+    };
+    contactCardDiv.appendChild(deleteButton);
+  });
+}
+
+function deleteContact(index) {
+  // Cancellazione da anagrafica
+  anagrafica.splice(index, 1);
+  // Sync con il local storage
+  window.localStorage.setItem("contatti", JSON.stringify(anagrafica));
+  // Update della rubrica
+  updateContactBook();
+  // Update del contatore
+  updateCounter();
+}
+
+/* Local Storage */
+
 function writeOnDB(name, surname, cf) {
   let persona = new Persona(name, surname, cf);
   anagrafica.push(persona);
@@ -22,12 +118,8 @@ function writeOnDB(name, surname, cf) {
     document.getElementById("formCF").classList.remove("cf-error");
   }
   updateCounter();
+  updateContactBook();
   alert("Inserimento effettuato!");
-}
-
-function updateCounter() {
-  peopleCounter = anagrafica.length;
-  document.getElementById("contactCounter").innerHTML = peopleCounter;
 }
 
 function sendDataDB() {
@@ -66,6 +158,8 @@ function sendDataDB() {
   }
 }
 
+/* Funzioni legate al caricamento */
+
 window.onload = () => {
   if (window.localStorage.getItem("contatti") != null) {
     let tempArray = JSON.parse(window.localStorage.getItem("contatti"));
@@ -73,4 +167,5 @@ window.onload = () => {
     peopleCounter = anagrafica.length;
   }
   document.getElementById("contactCounter").innerHTML = peopleCounter;
+  showContactBook();
 };
