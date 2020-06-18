@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="base.css" />
+    <script src="anagrafica.js"></script>
+    <title>Esercizio 5</title>
+  </head>
+
+  <body>
+    <div class="container" id="primary-content">
+      <div class="row mt-3">
+        <div class="col-12">
+          <p class="h1 text-center">Esercizio 5</p>
+        </div>
+      </div>
+      <div class="row">
+        <!-- Form di inserimento -->
+        <div class="col-12 col-sm-4 mb-3">
+          <p class="h3">Inserimento</p>
+          <!-- <form action=""> -->
+          <div class="form-group">
+            <label>Nome</label>
+            <input type="text" class="form-control" id="formName" />
+          </div>
+          <div class="form-group">
+            <label>Cognome</label>
+            <input type="text" class="form-control" id="formSurname" />
+          </div>
+          <div class="form-group">
+            <label>Codice Fiscale</label>
+            <input type="text" class="form-control" id="formCF" />
+          </div>
+          <button class="btn btn-primary" onclick="sendDataDB()">
+            Salva
+          </button>
+          <!-- </form> -->
+        </div>
+
+        <!-- Colonna dei contatti -->
+        <div class="col-12 col-sm-4">
+          <p class="h3">I miei contatti</p>
+        </div>
+
+        <!-- Ricerca -->
+        <div class="col-12 col-sm-4">
+          <p class="h3">Cerca</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
