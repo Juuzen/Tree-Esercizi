@@ -18,6 +18,19 @@
 }
 
 .contactListItem {
-  padding-top: 4px;
-  padding-bottom: 4px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.contactInfoList {
+  padding-left: 32px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.contactCard {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
