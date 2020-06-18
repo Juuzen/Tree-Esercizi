@@ -12,3 +12,12 @@
   color: white;
   padding: 5px;
 }
+
+#contactBook {
+  max-height: 300px;
+}
+
+.contactListItem {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
