@@ -19,8 +19,16 @@ function flushSearch() {
 }
 
 function updateCounter() {
+  let counter = document.getElementById("contactCounter");
   peopleCounter = anagrafica.length;
-  document.getElementById("contactCounter").innerHTML = peopleCounter;
+  if (peopleCounter == 0) {
+    console.log(peopleCounter);
+    counter.style.textShadow = "2px 2px 5px #ff0000";
+  } else {
+    console.log(peopleCounter);
+    counter.style.textShadow = "2px 2px 5px #00ff00";
+  }
+  counter.innerHTML = peopleCounter;
 }
 
 function findContact(key) {
@@ -222,7 +230,7 @@ window.onload = () => {
   if (window.localStorage.getItem("contatti") != null) {
     let tempArray = JSON.parse(window.localStorage.getItem("contatti"));
     anagrafica = tempArray;
-    peopleCounter = anagrafica.length;
+    updateCounter();
   }
   document.getElementById("contactCounter").innerHTML = peopleCounter;
   showContactBook();
