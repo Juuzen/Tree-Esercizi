@@ -35,12 +35,11 @@ function searchContacts() {
   let foundContactsArray = anagrafica.filter((persona) => {
     return persona.cf.includes(searchString);
   });
-  console.log(foundContactsArray);
 }
 
 function findContact(key) {
   // index indica la posizione nell'array del codice fiscale della persona da eliminare (resta -1 se il codice fiscale non è presente)
-  let response = -1;
+  let response = null;
   anagrafica.forEach((persona, index) => {
     if (persona.cf == key) {
       response = index;
@@ -84,7 +83,7 @@ function triggerSearch() {
   let foundContact = document.getElementById("foundContact");
   foundContact.textContent = "";
   let index = findContact(cf);
-  if (index >= 0) {
+  if (index != null) {
     showContact(anagrafica[index], foundContact);
     document.getElementById("resetSearchButton").disabled = false;
   } else {
@@ -100,7 +99,11 @@ function triggerDelete(cf) {
   );
   if (response) {
     let index = findContact(cf);
-    deleteContact(index);
+    if (index != null) {
+      deleteContact(index);
+    } else {
+      alert("E' successo un casino per cancellare questo contatto bro");
+    }
   }
 }
 
