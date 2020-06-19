@@ -22,13 +22,20 @@ function updateCounter() {
   let counter = document.getElementById("contactCounter");
   peopleCounter = anagrafica.length;
   if (peopleCounter == 0) {
-    console.log(peopleCounter);
     counter.style.textShadow = "2px 2px 5px #ff0000";
   } else {
-    console.log(peopleCounter);
     counter.style.textShadow = "2px 2px 5px #00ff00";
   }
   counter.innerHTML = peopleCounter;
+}
+
+function searchContacts() {
+  // Deve mostrare tutti gli elementi che matchano con la stringa
+  let searchString = document.getElementById("searchForm").value;
+  let foundContactsArray = anagrafica.filter((persona) => {
+    return persona.cf.includes(searchString);
+  });
+  console.log(foundContactsArray);
 }
 
 function findContact(key) {
@@ -74,11 +81,9 @@ function showContact(persona, tagElement) {
 
 function triggerSearch() {
   let cf = document.getElementById("searchForm").value;
-  console.log(cf);
   let foundContact = document.getElementById("foundContact");
   foundContact.textContent = "";
   let index = findContact(cf);
-  console.log(index);
   if (index >= 0) {
     showContact(anagrafica[index], foundContact);
     document.getElementById("resetSearchButton").disabled = false;
@@ -86,23 +91,6 @@ function triggerSearch() {
     alert("Non è presente nessuna persona con questo CF!");
   }
 }
-
-/*
-function test(cf) {
-  let value = findContact(cf);
-  console.log(value);
-}
-*/
-
-/* test2
-function test2() {
-  anagrafica.forEach((persona) => {
-    for (let elem in persona) {
-      console.log(persona[elem]);
-    }
-  });
-}
-*/
 
 /* Rubrica */
 
