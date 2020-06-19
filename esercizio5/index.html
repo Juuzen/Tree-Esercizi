@@ -66,25 +66,15 @@
           <p class="h3">Cerca</p>
           <div class="form-group">
             <label>Cerca (per CF):</label>
-            <input type="text" class="form-control" id="searchForm" />
+            <input
+              type="text"
+              class="form-control"
+              id="searchForm"
+              onkeyup="searchContacts()"
+            />
           </div>
-          <div class="search-button-row d-flex justify-content-between">
-            <button
-              class="btn btn-primary flex-grow-1 search-button"
-              onclick="searchContacts()"
-            >
-              Cerca
-            </button>
-            <button
-              class="btn btn-secondary flex-grow-1 search-button"
-              disabled
-              id="resetSearchButton"
-              onclick="flushSearch()"
-            >
-              Resetta
-            </button>
-          </div>
-          <div id="foundContact"></div>
+          <span id="searchResponseText"></span>
+          <div id="foundContacts"></div>
         </div>
       </div>
     </div>

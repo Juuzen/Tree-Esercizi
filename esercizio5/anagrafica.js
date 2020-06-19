@@ -14,8 +14,8 @@ function flushForms() {
 }
 
 function flushSearch() {
-  document.getElementById("foundContact").textContent = "";
-  document.getElementById("resetSearchButton").disabled = true;
+  document.getElementById("searchResponseText").textContent = "";
+  document.getElementById("foundContacts").textContent = "";
 }
 
 function updateCounter() {
@@ -31,14 +31,41 @@ function updateCounter() {
 
 function searchContacts() {
   // Deve mostrare tutti gli elementi che matchano con la stringa
+
+  // searchString se lo pesca dal searchForm input
   let searchString = document.getElementById("searchForm").value;
-  let foundContactsArray = anagrafica.filter((persona) => {
-    return persona.cf.includes(searchString);
-  });
+
+  if (searchString != "") {
+    // foundContactsDiv si pesca il div dove mettere i vari contatti
+    let foundContactsDiv = document.getElementById("foundContacts");
+    foundContactsDiv.textContent = "";
+
+    //searchText si pesca lo span dove andare a scrivere
+    let searchText = document.getElementById("searchResponseText");
+
+    let foundContactsArray = anagrafica.filter((persona) => {
+      return persona.cf.includes(searchString);
+    });
+    let foundCounter = foundContactsArray.length;
+
+    if (foundCounter > 0) {
+      //Bisogna scrivere in searchText quanti contatti sono stati trovati
+      searchText.innerHTML =
+        "Sono stati trovati " + foundCounter + " contatti:";
+    } else {
+      searchText.innerHTML = "Nessun risultato trovato.";
+    }
+
+    foundContactsArray.forEach((persona) => {
+      showContact(persona, foundContactsDiv);
+    });
+  } else {
+    flushSearch();
+  }
 }
 
 function findContact(key) {
-  // index indica la posizione nell'array del codice fiscale della persona da eliminare (resta -1 se il codice fiscale non è presente)
+  // ritorna l'indice dell'elemento trovato, null se non esiste
   let response = null;
   anagrafica.forEach((persona, index) => {
     if (persona.cf == key) {
@@ -51,7 +78,6 @@ function findContact(key) {
 
 function showContact(persona, tagElement) {
   let textSpan = document.createElement("span");
-  textSpan.innerHTML = "La persona cercata è:";
   tagElement.appendChild(textSpan);
 
   let contactCardDiv = document.createElement("div");
