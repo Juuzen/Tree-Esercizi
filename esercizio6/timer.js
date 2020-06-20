@@ -1,13 +1,10 @@
-// https://jsfiddle.net/Daniel_Hug/pvk6p/
-// https://stackoverflow.com/questions/8779845/javascript-setinterval-not-working
-
 /* - Variabili globali */
 
 let seconds = 0;
 let minutes = 0;
 
+// il cronometro
 let gameTimer = document.getElementById("gameTimer");
-
 
 let timer = null;
 
@@ -50,7 +47,7 @@ function startGame() {
   }
 }
 
-function quitGame() {
+function endGame(isDropped) {
   let playerName = document.getElementById("playerNameInput");
   let gameTimer = document.getElementById("gameTimer");
 
@@ -64,11 +61,23 @@ function quitGame() {
   //disabilita il tasto QUIT
   document.getElementById("quitGameButton").disabled = true;
 
-  // salvataggio in localStorage
-  window.localStorage.setItem(playerName.value, gameTimer.innerText);
-
   //alert PARTITA INTERROTTA/PARTITA VINTA
-
+  if (isDropped) {
+    alert(
+      "Ciao " +
+        playerName.value +
+        ", sei arrivato a " +
+        gameTimer.innerText +
+        " secondi con ben X match corretti effettuati!"
+    );
+  } else {
+    alert(
+      "Hai completato il livello in " +
+        gameTimer.innerText +
+        "! La sessione verrà salvata."
+    );
+    window.localStorage.setItem(playerName.value, gameTimer.innerText);
+  }
   // flush del timer
   gameTimer.innerText = "00:00";
 
