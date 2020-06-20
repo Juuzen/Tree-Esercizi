@@ -5,11 +5,11 @@ var carta1 = undefined,
 cardsInizialization();
 
 function cardsInizialization() {
-  let carteDaPosizionare = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5];
+  let randomNumbers = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5];
   for (card of deck) {
-    let numero = parseInt(Math.random() * carteDaPosizionare.length);
-    card.querySelector(".numeroCarta").textContent = carteDaPosizionare[numero];
-    carteDaPosizionare.splice(numero, 1);
+    let index = parseInt(Math.random() * carteDaPosizionare.length);
+    card.querySelector(".numeroCarta").textContent = randomNumbers[index];
+    carteDaPosizionare.splice(index, 1);
     card.addEventListener("click", turnCard);
     card.classList.add("disabled-card");
   }
@@ -22,7 +22,7 @@ function turnCard(event) {
   } else if (carta2 === undefined && carta1 !== event.currentTarget) {
     carta2 = event.currentTarget;
     carta2.classList.add("selezionate");
-    window.setTimeout("checkCarta()", 2000);
+    window.setTimeout("checkCarta()", 1000);
   }
 }
 
