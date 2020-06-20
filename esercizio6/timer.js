@@ -8,6 +8,7 @@ let minutes = 0;
 
 let gameTimer = document.getElementById("gameTimer");
 
+
 let timer = null;
 
 /* Funzioni */
@@ -39,6 +40,7 @@ function startGame() {
     document.getElementById("startGameButton").disabled = true;
 
     // abilita il campo di gioco
+    toggleCardboard(false);
 
     // abilita il bottone QUIT
     document.getElementById("quitGameButton").disabled = false;
@@ -68,4 +70,8 @@ function quitGame() {
   //alert PARTITA INTERROTTA/PARTITA VINTA
 
   // flush del timer
+  gameTimer.innerText = "00:00";
+
+  // disabilita le carte
+  toggleCardboard(true);
 }

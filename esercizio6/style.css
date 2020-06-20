@@ -82,3 +82,7 @@
     color: white;
     transform: rotateY(180deg);
 }
+
+.disabled-card {
+    pointer-events: none;
+}
