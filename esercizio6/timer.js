@@ -10,6 +10,12 @@ let timer = null;
 
 /* Funzioni */
 
+function flushTimer() {
+  gameTimer.innerText = "00:00";
+  seconds = 0;
+  minutes = 0;
+}
+
 function addSecond() {
   seconds++;
   if (seconds == 60) {
@@ -37,6 +43,7 @@ function startGame() {
     document.getElementById("startGameButton").disabled = true;
 
     // abilita il campo di gioco
+    cardboardInit();
     toggleCardboard(false);
 
     // abilita il bottone QUIT
@@ -79,7 +86,7 @@ function endGame(isDropped) {
     window.localStorage.setItem(playerName.value, gameTimer.innerText);
   }
   // flush del timer
-  gameTimer.innerText = "00:00";
+  flushTimer();
 
   // disabilita le carte
   toggleCardboard(true);
