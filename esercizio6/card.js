@@ -2,16 +2,17 @@ const deck = document.querySelectorAll(".flip-card");
 
 var carta1 = undefined,
   carta2 = undefined;
-cardsInizialization();
+//cardboardInit();
 
-function cardsInizialization() {
+function cardboardInit() {
   let randomNumbers = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5];
   for (card of deck) {
-    let index = parseInt(Math.random() * carteDaPosizionare.length);
+    let index = parseInt(Math.random() * randomNumbers.length);
     card.querySelector(".numeroCarta").textContent = randomNumbers[index];
-    carteDaPosizionare.splice(index, 1);
+    randomNumbers.splice(index, 1);
     card.addEventListener("click", turnCard);
     card.classList.add("disabled-card");
+    card.classList.remove("scompari");
   }
 }
 
@@ -22,7 +23,7 @@ function turnCard(event) {
   } else if (carta2 === undefined && carta1 !== event.currentTarget) {
     carta2 = event.currentTarget;
     carta2.classList.add("selezionate");
-    window.setTimeout("checkCarta()", 1000);
+    window.setTimeout("checkCarta()", 750);
   }
 }
 
@@ -42,6 +43,10 @@ function checkCarta() {
 function togliCoppiaCorretta() {
   carta1.classList.add("scompari");
   carta2.classList.add("scompari");
+  carta1.classList.remove("selezionate");
+  carta2.classList.remove("selezionate");
+  carta1.classList.remove("mostra-successo");
+  carta2.classList.remove("mostra-successo");
   setUndefined();
 }
 
@@ -56,17 +61,13 @@ function coppiaScorretta(carta1, carta2) {
   carta2.classList.remove("selezionate");
   carta1.classList.add("mostra-errore");
   carta2.classList.add("mostra-errore");
-  window.setTimeout("togliCoppiaScorretta()", 500);
-  // lascia stare perfetto così
-  console.log("Oh mi dispiace!");
+  window.setTimeout("togliCoppiaScorretta()", 350);
 }
 
 function coppiaCorretta(carta1, carta2) {
   carta1.classList.add("mostra-successo");
   carta2.classList.add("mostra-successo");
-  window.setTimeout("togliCoppiaCorretta()", 500);
-  // lascia stare perfetto così
-  console.log("Yatta!");
+  window.setTimeout("togliCoppiaCorretta()", 350);
 }
 
 function setUndefined() {
@@ -84,28 +85,6 @@ function checkCarteInCampo(carta) {
     carteInCampo.forEach((cartaCorrente) => {
       cartaCorrente == carta ? cartaGiaPresente++ : null;
     });
-  }
-}
-
-function posizionaCartaInCampo() {
-  //Non ultimata
-
-  for (let i = 0; i < 12; i++) {
-    //for solo per il testing
-
-    if (carteDaPosizionare.length > 0) {
-      let numeroRandom = parseInt(
-        Math.random() *
-          (Math.max(...carteDaPosizionare) - Math.min(...carteDaPosizionare))
-      );
-
-      if (carteDaPosizionare.includes(numeroRandom) == true) {
-        carteDaPosizionare.splice(numeroRandom, 1);
-        // chiamata alla funzione che posiziona la carta;
-        console.log(numeroRandom);
-      } else {
-      }
-    }
   }
 }
 
