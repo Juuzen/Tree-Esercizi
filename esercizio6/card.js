@@ -1,4 +1,4 @@
-const cards = document.querySelectorAll(".flip-card");
+const deck = document.querySelectorAll(".flip-card");
 
 var carta1 = undefined,
   carta2 = undefined;
@@ -6,7 +6,7 @@ cardsInizialization();
 
 function cardsInizialization() {
   let carteDaPosizionare = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5];
-  for (card of cards) {
+  for (card of deck) {
     let numero = parseInt(Math.random() * carteDaPosizionare.length);
     card.querySelector(".numeroCarta").textContent = carteDaPosizionare[numero];
     carteDaPosizionare.splice(numero, 1);
@@ -36,9 +36,6 @@ function checkCarta() {
     } else {
       coppiaScorretta(carta1, carta2);
     }
-
-    console.log(carta1);
-    console.log(carta2);
   }
 }
 
@@ -112,44 +109,11 @@ function posizionaCartaInCampo() {
   }
 }
 
-function resettaCarteDaPosizionare() {
-  carteDaPosizionare = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5];
-}
-
-const mazzoCarte = {
-  0: { carta: "Gatto", url: "assets/etcetc" },
-  1: { carta: "Cane", url: "assets/etcetc" },
-  2: { carta: "Gufo", url: "assets/etcetc" },
-  3: { carta: "Pagolino", url: "assets/etcetc" },
-  4: { carta: "PipistrelloColCovid", url: "assets/etcetc" },
-  5: { carta: "Nunzio", url: "assets/etcetc" },
-};
-
-const campo2 = [12];
-
-function posiziona2() {
-  let ArrayNumeriPossibili = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5];
-  campo.forEach((card) => {
-    let numero = parseInt(Math.random() * ArrayNumeriPossibili.length);
-    card = numero;
-    ArrayNumeriPossibili.splice(numero, 1);
-  });
-}
-
-function PosizionaNumeri() {
-  let ArrayNumeriPossibili = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5];
-
-  let numero = parseInt(Math.random() * ArrayNumeriPossibili.length) + 1;
-  ArrayNumeriPossibili.splice(numero, 1);
-  campo[i][j].numero = 1;
-}
-
 function toggleCardboard(isDisabled) {
-  for (card of cards) {
+  for (card of deck) {
     if (isDisabled) {
       card.classList.add("disabled-card");
     } else {
-      console.log(card);
       card.classList.remove("disabled-card");
     }
   }

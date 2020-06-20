@@ -1,6 +1,3 @@
-/* Ragazzi sono Giuseppe Codice per animazione css */
-
-
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 
 .flip-card {
@@ -66,14 +63,12 @@
     height: 220px;
 }
 
-
 /* Style the front side (fallback if image is missing) */
 
 .flip-card-front {
     background-color: #bbb;
     color: black;
 }
-
 
 /* Style the back side */
 
@@ -82,6 +77,8 @@
     color: white;
     transform: rotateY(180deg);
 }
+
+/* Behaviour classes */
 
 .disabled-card {
     pointer-events: none;
