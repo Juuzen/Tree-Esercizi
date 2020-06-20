@@ -1,5 +1,3 @@
-/* - Regione per timer - */
-
 // https://jsfiddle.net/Daniel_Hug/pvk6p/
 // https://stackoverflow.com/questions/8779845/javascript-setinterval-not-working
 
@@ -15,40 +13,59 @@ let timer = null;
 /* Funzioni */
 
 function addSecond() {
-    seconds++;
-    if (seconds == 60) {
-        seconds = 0;
-        minutes++;
-    }
-    // parte da 00:01
-    if (seconds < 10) {
-        gameTimer.textContent = "0" + minutes + ":" + "0" + seconds;
-    } else {
-        gameTimer.textContent = "0" + minutes + ":" + seconds;
-    }
-    // richiama setTimer per impostare la nuova chiamata ad addSeconds
-
+  seconds++;
+  if (seconds == 60) {
+    seconds = 0;
+    minutes++;
+  }
+  // parte da 00:01
+  if (seconds < 10) {
+    gameTimer.textContent = "0" + minutes + ":" + "0" + seconds;
+  } else {
+    gameTimer.textContent = "0" + minutes + ":" + seconds;
+  }
+  // richiama setTimer per impostare la nuova chiamata ad addSeconds
 }
 
-function startGameTimer() {
-    // check se il nome è presente
+function startGame() {
+  let playerName = document.getElementById("playerNameInput");
+  if (playerName.value == "") {
+    alert("Non puoi iniziare il gioco se non scegli un nome!");
+  } else {
+    // disabilita il text input
+    playerName.disabled = true;
 
-    // se è presente, disabilitare il text input
+    // disabilita il bottone START
+    document.getElementById("startGameButton").disabled = true;
 
-    // rendere attive le carte
+    // abilita il campo di gioco
 
+    // abilita il bottone QUIT
+    document.getElementById("quitGameButton").disabled = false;
 
-    // avvio timer
+    // fa partire il cronometro
     timer = window.setInterval(addSecond, 1000);
-
-    // disabilitare il tasto start
-    document.getElementById("startTimerButton").disabled = true;
+  }
 }
 
-function stopGameTimer() {
-    clearInterval(timer);
-    // salvataggio in localStorage
-    // flush del timer
-}
+function quitGame() {
+  let playerName = document.getElementById("playerNameInput");
+  let gameTimer = document.getElementById("gameTimer");
 
-/* - Fine regione per timer -*/
+  //ferma il timer
+  clearInterval(timer);
+
+  //riabilita text input e bottone START
+  document.getElementById("startGameButton").disabled = false;
+  playerName.disabled = false;
+
+  //disabilita il tasto QUIT
+  document.getElementById("quitGameButton").disabled = true;
+
+  // salvataggio in localStorage
+  window.localStorage.setItem(playerName.value, gameTimer.innerText);
+
+  //alert PARTITA INTERROTTA/PARTITA VINTA
+
+  // flush del timer
+}

@@ -163,15 +163,3 @@ function inserisciStorage() {
     let tempo = 'ciao';
     window.localStorage.setItem(nome, tempo);
 }
-
-
-/*
-function start(id) {
-    let second = 0;
-    setInterval(() => {
-        id.textContent = 'Secondi trascorsi: '+ secondi;
-        second++;
-    }, 1000);
-}
-
-*/

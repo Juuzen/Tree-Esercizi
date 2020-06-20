@@ -16,24 +16,30 @@
         <!-- Sezione header -->
         <div class="row">
             <div class="col-2">
-                <button class="btn btn-primary" id="startTimerButton" onclick="startGameTimer()">Start</button>
+                <button class="btn btn-primary" id="startGameButton" onclick="startGame()">INIZIA</button>
             </div>
             <div class="col-2">
                 <span class="gameTimer" id="gameTimer">
-          00:00
-        </span>
+                    00:00
+                </span>
             </div>
             <div class="col-2">
-                <button class="btn btn-danger" id="stopTimerButton" onclick="stopGameTimer()">Stop</button>
+                <button 
+                class="btn btn-danger" 
+                id="quitGameButton" 
+                onclick="quitGame()" 
+                disabled>
+                    INTERROMPI
+                </button>
 
             </div>
             <div class="col-6">
-                <input type="text" class="nameInput" placeholder="Inserisci il tuo nome" />
+                <input type="text" id="playerNameInput" placeholder="Inserisci il tuo nome" />
 
             </div>
         </div>
         <!-- Sezione carte -->
-        <div>
+        <div class="container">
             <div class="row my-4">
                 <div class="col-3">
                     <div class="flip-card">
@@ -188,6 +194,7 @@
         </div>
         <script src="card.js"></script>
         <script src="timer.js"></script>
+        <script src="test.js"></script>
 </body>
 
 </html>
