@@ -75,7 +75,9 @@ function endGame(isDropped) {
         playerName.value +
         ", sei arrivato a " +
         gameTimer.innerText +
-        " secondi con ben X match corretti effettuati!"
+        " secondi con ben " +
+        matchesMade +
+        " match corretti effettuati!"
     );
   } else {
     alert(

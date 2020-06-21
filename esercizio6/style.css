@@ -31,7 +31,8 @@
 }
 
 .mostra-errore {
-  border: red solid 5px;
+  /* border: red solid 5px; */
+  box-shadow: 0px 0px 21px 0px rgba(255, 0, 0, 1);
 }
 
 .mostra-successo {
@@ -70,9 +71,16 @@
 /* Style the back side */
 
 .flip-card-back {
-  background-color: dodgerblue;
-  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fffaf0;
+  box-shadow: inset 0px 0px 92px 38px rgba(219, 214, 204, 1);
   transform: rotateY(180deg);
+}
+
+.numeroCarta {
+  font-size: 750%;
 }
 
 /* Behaviour classes */
