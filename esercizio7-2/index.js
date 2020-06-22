@@ -54,34 +54,11 @@ async function login() {
     } else {
       // puoi entrare
       alert("Bentornato " + email + "!");
-    }
-  }
-}
-
-/*
-async function login() {
-  let response = false;
-  let email = document.getElementById("loginMailInput").value;
-  let password = document.getElementById("loginPasswordInput").value;
-  let hashedPassword = null;
-
-  // se la mail è presente
-  if (!checkUser(email)) {
-    alert("Indirizzo email non corretto!");
-  } else {
-
-    hashedPassword = await encrypt(password);
-    // se la password coincide con quella salvata
-    if (userDB[email] !== hashedPassword) {
-      alert("La password non è corretta.");
-    } else {
-      // puoi entrare
-      alert("Bentornato " + email + "!");
       window.location.href = "home.html";
     }
   }
 }
-*/
+
 /* ------ */
 
 async function register() {
