@@ -37,6 +37,27 @@ async function passwordCheck(password, storedPassword) {
 /* ------ */
 
 async function login() {
+  let email = document.getElementById("loginMailInput").value;
+  let password = document.getElementById("loginPasswordInput").value;
+  let hashedPassword = null;
+  if (checkUser(email)) {
+    hashedPassword = await encrypt(password);
+
+    if (userDB[email] === hashedPassword) {
+      alert("Welcome back!");
+      document.forms["login"].submit();
+    } else {
+      alert("La password non è corretta.");
+      return;
+    }
+  } else {
+    alert("Email inesistente");
+    return;
+  }
+}
+
+/*
+async function login() {
   let response = false;
   let email = document.getElementById("loginMailInput").value;
   let password = document.getElementById("loginPasswordInput").value;
@@ -58,6 +79,7 @@ async function login() {
     }
   }
 }
+*/
 
 /* ------ */
 
