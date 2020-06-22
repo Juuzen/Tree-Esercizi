@@ -20,27 +20,33 @@ function checkUser(email) {
 /* ------ */
 
 async function encrypt(text) {
-	const msgUint8 = new TextEncoder().encode(text);
-	const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8);
-	const hashArray = Array.from(new Uint8Array(hashBuffer));
-	const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-	return hashHex;
+  const msgUint8 = new TextEncoder().encode(text);
+  const hashBuffer = await crypto.subtle.digest("SHA-256", msgUint8);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  const hashHex = hashArray
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
+  return hashHex;
+}
+
+async function passwordCheck(password, storedPassword) {
+  const hashedPassword = await encrypt(password);
+  return hashedPassword === storedPassword ? true : false;
 }
 
 /* ------ */
 
-function login() {
+async function login() {
   let email = document.getElementById("loginMailInput").value;
   let password = document.getElementById("loginPasswordInput").value;
-  console.log(email);
   if (!checkUser(email)) {
     alert("Indirizzo email non corretto!");
-    return false;
+    return;
   }
 
-  if (password !== userDB[email]) {
-    alert("La password non è corretta!");
-    return false;
+  if ((await passwordCheck(password, userDB[email])) === false) {
+    alert("La password non è corretta.");
+    return;
   }
 
   alert("Bentornato " + email + "!");
@@ -49,7 +55,7 @@ function login() {
 
 /* ------ */
 
-function register() {
+async function register() {
   let email = document.getElementById("registerMailInput").value;
   let password = document.getElementById("registerPasswordInput").value;
   let psConfirm = document.getElementById("registerPasswordConfirm").value;
@@ -67,7 +73,7 @@ function register() {
   }
 
   // posso salvare l'utente
-  userDB[email] = await encrypt(password); //questa password deve essere crittata
+  userDB[email] = await encrypt(password);
   storeDB();
   alert("Utente memorizzato!");
 }
