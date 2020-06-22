@@ -42,20 +42,21 @@ async function login() {
   let password = document.getElementById("loginPasswordInput").value;
   let hashedPassword = null;
 
+  // se la mail è presente
   if (!checkUser(email)) {
     alert("Indirizzo email non corretto!");
   } else {
-    alert(1);
+
     hashedPassword = await encrypt(password);
+    // se la password coincide con quella salvata
     if (userDB[email] !== hashedPassword) {
       alert("La password non è corretta.");
     } else {
-      alert(2);
-      //alert("Bentornato " + email + "!");
-      response = true;
+      // puoi entrare
+      alert("Bentornato " + email + "!");
+      window.location.href = "home.html";
     }
   }
-  return response;
 }
 
 /* ------ */
