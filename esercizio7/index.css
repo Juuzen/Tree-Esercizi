@@ -1,0 +1,22 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+#loginFormDiv {
+}
+
+#registerFormDiv {
+  /* FIX: quando si carica la pagina, si vede il form di registrazione prima che venga oscurato */
+}
+
+.login-form {
+  background-color: blue;
+  border-radius: 10px;
+}
+
+.register-form {
+  background-color: red;
+  border-radius: 10px;
+}
