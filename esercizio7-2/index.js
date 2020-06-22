@@ -37,20 +37,25 @@ async function passwordCheck(password, storedPassword) {
 /* ------ */
 
 async function login() {
+  let response = false;
   let email = document.getElementById("loginMailInput").value;
   let password = document.getElementById("loginPasswordInput").value;
+  let hashedPassword = null;
+
   if (!checkUser(email)) {
     alert("Indirizzo email non corretto!");
-    return;
+  } else {
+    alert(1);
+    hashedPassword = await encrypt(password);
+    if (userDB[email] !== hashedPassword) {
+      alert("La password non è corretta.");
+    } else {
+      alert(2);
+      //alert("Bentornato " + email + "!");
+      response = true;
+    }
   }
-
-  if ((await passwordCheck(password, userDB[email])) === false) {
-    alert("La password non è corretta.");
-    return;
-  }
-
-  alert("Bentornato " + email + "!");
-  return true;
+  return response;
 }
 
 /* ------ */

@@ -6,11 +6,7 @@
 
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
     />
     <link rel="stylesheet" href="style.css" />
 
@@ -26,7 +22,7 @@
       <div class="row">
         <div class="col-6 login-box">
           <h3 class="form-title">Accedi</h3>
-          <form action="home.html">
+          <form action="home.html" onsubmit="return login();" method="POST">
             <div class="form-group">
               <label for="">Indirizzo email</label>
               <input
@@ -47,11 +43,7 @@
                 required
               />
             </div>
-            <button
-              type="submit"
-              class="btn btn-primary"
-              onsubmit="return login();"
-            >
+            <button type="submit" class="btn btn-primary">
               Accedi
             </button>
           </form>
