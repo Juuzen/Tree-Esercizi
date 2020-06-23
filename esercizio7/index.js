@@ -1,5 +1,6 @@
 let userDB = {}; // MAIL : PASSWORD
 const LSkey = "My first crypted DB";
+const SSkey = "loggedUser";
 
 function storeDB() {
   window.localStorage.setItem(LSkey, JSON.stringify(userDB));
@@ -36,6 +37,9 @@ async function passwordCheck(password, storedPassword) {
 
 /* ------ */
 
+function 
+
+/* ------ */
 async function login() {
   let email = document.getElementById("loginMailInput").value;
   let password = document.getElementById("loginPasswordInput").value;
