@@ -1,0 +1,9 @@
+.albums {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 30px;
+}
+
+#contentAlbum {
+  border-right: 2px solid black;
+}

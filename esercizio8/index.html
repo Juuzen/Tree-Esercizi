@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+
+    <script src="index.js"></script>
+    <title>Esercizio 8</title>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row my-4">
+        <div class="col-12 text-center">
+          <p class="h3">Utenti</p>
+          <div class="form-group">
+            <label>Seleziona un utente</label>
+            <select
+              class="form-control"
+              id="users"
+              onchange="getAlbum()"
+            ></select>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+          <p class="h3">Gli album di <span id="userSelected"></span></p>
+          <div class="row" id="contentAlbum"></div>
+        </div>
+
+        <div class="col-6">
+          <p class="h3">Foto dell'album <span id="albumTitle"></span></p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
