@@ -1,6 +1,5 @@
 let userDB = {}; // MAIL : PASSWORD
 const LSkey = "My first crypted DB";
-const SSkey = "loggedUser";
 
 function storeDB() {
   window.localStorage.setItem(LSkey, JSON.stringify(userDB));
@@ -13,6 +12,7 @@ function loadDB() {
     storeDB();
   }
 }
+
 
 function checkUser(email) {
   return userDB[email] ? userDB[email] : false;
@@ -37,18 +37,46 @@ async function passwordCheck(password, storedPassword) {
 
 /* ------ */
 
-function 
+// Per poter scrivere nel cookie
+function setCookie(cookieName, cookieValue, expiryDays) {
+  var d = new Date();
+  d.setTime(d.getTime() + expiryDays * 24 * 60 * 60 * 1000);
+  var expires = "expires=" + d.toUTCString();
+  document.cookie =
+    cookieName + "=" + JSON.stringify(cookieValue) + ";" + expires + ";path=/";
+}
+
+// Per poter recuperare il cookie dal browser
+function getCookie(cookieName) {
+  var name = cookieName + "=";
+  var ca = document.cookie.split(";");
+  for (var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == " ") {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return JSON.parse(c.substring(name.length, c.length));
+    }
+  }
+  return "";
+}
 
 /* ------ */
+
 async function login() {
   let email = document.getElementById("loginMailInput").value;
   let password = document.getElementById("loginPasswordInput").value;
+
   let hashedPassword = null;
   if (checkUser(email)) {
     hashedPassword = await encrypt(password);
 
     if (userDB[email] === hashedPassword) {
-      alert("Welcome back!");
+      let userObj = { a: email, b: hashedPassword };
+      setCookie("User", userObj, 10);
+      console.log(getCookie("User"));
+      console.log(userDB);
       document.forms["login"].submit();
     } else {
       alert("La password non è corretta.");
@@ -59,31 +87,6 @@ async function login() {
     return;
   }
 }
-
-/*
-async function login() {
-  let response = false;
-  let email = document.getElementById("loginMailInput").value;
-  let password = document.getElementById("loginPasswordInput").value;
-  let hashedPassword = null;
-
-  // se la mail è presente
-  if (!checkUser(email)) {
-    alert("Indirizzo email non corretto!");
-  } else {
-
-    hashedPassword = await encrypt(password);
-    // se la password coincide con quella salvata
-    if (userDB[email] !== hashedPassword) {
-      alert("La password non è corretta.");
-    } else {
-      // puoi entrare
-      alert("Bentornato " + email + "!");
-      window.location.href = "home.html";
-    }
-  }
-}
-*/
 
 /* ------ */
 
