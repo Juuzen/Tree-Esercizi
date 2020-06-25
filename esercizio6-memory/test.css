@@ -1,0 +1,107 @@
+.main-view {
+  height: 90vh;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sidebar {
+  background-color: #ddd;
+  border-radius: 5px;
+
+  -webkit-box-shadow: 0px 8px 40px 0px rgba(166, 166, 166, 1);
+  -moz-box-shadow: 0px 8px 40px 0px rgba(166, 166, 166, 1);
+  box-shadow: 0px 8px 40px 0px rgba(166, 166, 166, 1);
+}
+
+/* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
+
+.flip-card {
+  background-color: transparent;
+  border: 1px solid #f1f1f1;
+  perspective: 1000px;
+  width: 150px;
+  height: 220px;
+  /* Remove this if you don't want the 3D effect */
+}
+
+/* This container is needed to position the front and back side */
+
+.flip-card-inner {
+  position: relative;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  width: 150px;
+  height: 220px;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+
+.scompari {
+  visibility: hidden;
+}
+
+.selezionate {
+  border: blue solid 5px;
+}
+
+.mostra-errore {
+  /* border: red solid 5px; */
+  box-shadow: 0px 0px 21px 0px rgba(255, 0, 0, 1);
+}
+
+.mostra-successo {
+  -webkit-box-shadow: inset 0px 8px 40px 0px rgba(0, 222, 33, 1);
+  -moz-box-shadow: inset 0px 8px 40px 0px rgba(0, 222, 33, 1);
+  box-shadow: inset 0px 8px 40px 0px rgba(0, 222, 33, 1);
+}
+
+.selezionate .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 150px;
+  height: 220px;
+  -webkit-backface-visibility: hidden;
+  /* Safari */
+  backface-visibility: hidden;
+}
+
+.flip-card-front img,
+.flip-card-back img {
+  width: 150px;
+  height: 220px;
+}
+
+/* Style the front side (fallback if image is missing) */
+
+.flip-card-front {
+  /*background-color: #bbb;*/
+  color: black;
+}
+
+/* Style the back side */
+
+.flip-card-back {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fffaf0;
+  box-shadow: inset 0px 0px 92px 38px rgba(219, 214, 204, 1);
+  transform: rotateY(180deg);
+}
+
+.numeroCarta {
+  font-size: 750%;
+}
+
+/* Behaviour classes */
+
+.disabled-card {
+  pointer-events: none;
+}
