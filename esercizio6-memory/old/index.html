@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Esercizio 6: Memory game</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="style.css" />
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Sezione header -->
+        <div class="row">
+            <div class="col-2">
+                <button class="btn btn-primary" id="startGameButton" onclick="startGame()">INIZIA</button>
+            </div>
+            <div class="col-2">
+                <span class="gameTimer" id="gameTimer">
+                    00:00
+                </span>
+            </div>
+            <div class="col-2">
+                <button 
+                class="btn btn-danger" 
+                id="quitGameButton" 
+                onclick="endGame(true)" 
+                disabled>
+                    INTERROMPI
+                </button>
+
+            </div>
+            <div class="col-6">
+                <input type="text" id="playerNameInput" placeholder="Inserisci il tuo nome" />
+            </div>
+        </div>
+
+        <!-- Sezione carte -->
+        <div class="container" id="cardBoard">
+            <div class="row my-4">
+                <div class="col-3">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="assets/cardback.png" alt="cardback" />
+                            </div>
+                            <div class="flip-card-back">
+                                <h1 class="numeroCarta">1</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="assets/cardback.png" alt="cardback" />
+                            </div>
+                            <div class="flip-card-back">
+                                <h1 class="numeroCarta">3</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="assets/cardback.png" alt="cardback" />
+                            </div>
+                            <div class="flip-card-back">
+                                <h1 class="numeroCarta">6</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="assets/cardback.png" alt="cardback" />
+                            </div>
+                            <div class="flip-card-back">
+                                <h1 class="numeroCarta">4</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-3">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="assets/cardback.png" alt="cardback" />
+                            </div>
+                            <div class="flip-card-back">
+                                <h1 class="numeroCarta">2</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="assets/cardback.png" alt="cardback" />
+                            </div>
+                            <div class="flip-card-back">
+                                <h1 class="numeroCarta">3</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="assets/cardback.png" alt="cardback" />
+                            </div>
+                            <div class="flip-card-back">
+                                <h1 class="numeroCarta">1</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="assets/cardback.png" alt="cardback" />
+                            </div>
+                            <div class="flip-card-back">
+                                <h1 class="numeroCarta">5</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-3">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="assets/cardback.png" alt="cardback" />
+                            </div>
+                            <div class="flip-card-back">
+                                <h1 class="numeroCarta">5</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="assets/cardback.png" alt="cardback" />
+                            </div>
+                            <div class="flip-card-back">
+                                <h1 class="numeroCarta">3</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="assets/cardback.png" alt="cardback" />
+                            </div>
+                            <div class="flip-card-back">
+                                <h1 class="numeroCarta">4</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="assets/cardback.png" alt="cardback" />
+                            </div>
+                            <div class="flip-card-back">
+                                <h1 class="numeroCarta">6</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="card.js"></script>
+        <script src="timer.js"></script>
+        <script src="test.js"></script>
+</body>
+
+</html>
