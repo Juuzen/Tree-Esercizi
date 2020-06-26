@@ -45,6 +45,7 @@ const Ranking = {
     };
     this.list.push(rank);
     this.save();
+    this.refresh();
   },
 
   // carica la propria lista nel DB, dopo averla ordinata
