@@ -1,42 +1,91 @@
-const Timer = {
-  rowRef: document.getElementById("timeRow"),
-  timerRef: document.getElementById("gameTimer"),
-  gameTime: 0,
-  timer: null,
+// row tag (for the visibility)
+const rowRef = document.getElementById("timeRow");
+// span tag (for showing the time)
+const timerSpanRef = document.getElementById("gameTimer");
 
-  get: function () {
-    return this.gameTime;
-  },
+/* 
+pauseButtonListener will contain the reference to the last listener added to pauseGameButton 
+since we can't know what kind of listener will be attached to that button (pauseTime or resumeTime) 
+in this way we can detatch safely the listener when stopTime is called (avoiding messy code)
+*/
+const pauseButtonRef = document.getElementById("pauseGameButton");
+let pauseButtonListener = null;
 
-  refresh: function () {
-    console.log(this.timerRef);
-  },
+const startButtonRef = document.getElementById("startGameButton");
+const quitButtonRef = document.getElementById("quitGameButton");
 
-  flush: function () {
-    gameTime = 0;
-  },
+let gameTime = 0;
+let timer = null;
 
-  add: function () {
-    gameTime++;
-    this.refresh();
-  },
+function timeRedrawSpan() {
+  timerSpanRef.textContent = gameTime + " secondi trascorsi.";
+}
 
-  start: function () {
-    this.stop();
-    this.rowRef.style.visibility = "";
-    timer = window.setInterval(function () {
-      this.add();
-    }, 1000);
-  },
+function timeFlush() {
+  gameTime = 0;
+}
 
-  pause: function () {
-    clearInterval(this.timer);
-  },
+function timeAdd() {
+  gameTime++;
+  timeRedrawSpan();
+}
 
-  stop: function () {
-    this.pause();
-    this.rowRef.style.visibility = "hidden";
-    this.flush();
-    this.refresh();
-  },
-};
+function timeReset() {
+  timeFlush();
+  timeRedrawSpan();
+}
+
+function timePause() {
+  if (pauseButtonListener !== null) {
+    //FIXME: perché quando lo avvio la prima volta, entra qui dentro e mi cambia l'innertext?
+    pauseButtonRef.innerText = "RIPRENDI";
+  }
+  pauseButtonRef.removeEventListener("click", timePause);
+  pauseButtonRef.addEventListener("click", timeResume);
+  pauseButtonListener = timeResume;
+
+  clearInterval(timer);
+}
+
+function timeResume() {
+
+  pauseButtonRef.removeEventListener("click", timeResume);
+  pauseButtonRef.addEventListener("click", timePause);
+  pauseButtonListener = timePause;
+  pauseButtonRef.innerText = "PAUSA";
+  timer = window.setInterval(timeAdd, 1000);
+}
+
+function timeStart() {
+  timeReset();
+  rowRef.style.visibility = "";
+  // disabling startGameButton
+  startButtonRef.disabled = true;
+  // enabling pauseGameButton
+  pauseButtonRef.disabled = false;
+  // enabling quitGameButton
+  quitButtonRef.disabled = false;
+  // attaching timePause to pauseGameButton
+  pauseButtonRef.addEventListener("click", timePause);
+  pauseButtonListener = timePause;
+  // start the timer
+  timer = window.setInterval(timeAdd, 1000);
+}
+
+function timeStop() {
+  // stopping time
+  clearInterval(timer);
+  // hiding the time row
+  rowRef.style.visibility = "hidden";
+  // disabling pauseGameButton
+  pauseButtonRef.disabled = true;
+  // disabling quitGameButton
+  quitButtonRef.disabled = true;
+  // enabling startGameButton
+  startButtonRef.disabled = false;
+  // detatching pauseGameButton from the last listener function
+  pauseButtonRef.removeEventListener("click", pauseButtonListener);
+  pauseButtonListener = null;
+  timeFlush();
+  timeRedrawSpan();
+}
