@@ -2,7 +2,7 @@ const playerName = document.getElementById("playerNameInput");
 
 function startGame() {
   if (playerName.value == "" || playerName.value == undefined) {
-    alert ("Non puoi giocare senza aver scelto un nickname!");
+    alert("Non puoi giocare senza aver scelto un nickname!");
     playerName.focus();
   } else {
     // avoiding that the player can change their nickname during the game
@@ -23,11 +23,24 @@ function quitGame() {
 
 function endGame(quitted) {
   if (quitted == true) {
-    alert("Non hai completato tutto il gioco, mi dispiace! La tua partita verrà salvata ugualmente " + 
-    playerName.value + ".\n" +
-    "Hai totalizzato " + matchesMade + " in " + gameTime + " secondi. Non male!");
+    alert(
+      "Non hai completato tutto il gioco, mi dispiace! La tua partita verrà salvata ugualmente " +
+        playerName.value +
+        ".\n" +
+        "Hai totalizzato " +
+        matchesMade +
+        " in " +
+        gameTime +
+        " secondi. Non male!"
+    );
   } else {
-    alert("Complimenti " + playerName + "! Hai completato il gioco in " + gameTime + "secondi!");
+    alert(
+      "Complimenti " +
+        playerName.value +
+        "! Hai completato il gioco in " +
+        gameTime +
+        " secondi!"
+    );
   }
   Ranking.store(playerName.value, gameTime, matchesMade);
   timeStop();
