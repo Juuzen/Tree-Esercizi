@@ -10,9 +10,9 @@
     />
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/clienti.css" />
-    <link rel="stylesheet" href="./css/font-awesome.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" />
 
-    <title>Dashboard</title>
+    <title>Garage - Clienti</title>
   </head>
   <body>
     <div class="loader"></div>
@@ -62,15 +62,18 @@
             class="btn btn-primary mb-4" 
             data-toggle="modal"
             data-target="#addCustomerModal">
-          Nuovo Cliente
+            <i class="fas fa-plus"></i> Nuovo Cliente
           </button>
           
           <table class="table">
             <thead>
-                <tr>                            
+                <tr class="text-center">                            
                     <th scope="col">Nome</th>
                     <th scope="col">Mail</th>
-                    <th scope="col"></th>
+                    <th scope="col">Data di affitto</th>
+                    <th scope="col">Auto</th>
+                    <th scope="col">Restituisci</th>
+                    <th scope="col">Cancella</th>
                 </tr>
             </thead>
             <tbody id="customer-table"></tbody>
@@ -118,6 +121,7 @@
 
     <!-- Scripts -->
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/js/all.min.js"></script>
     <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
       integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

@@ -94,6 +94,7 @@ function getCustomers() {
 function loadCustomers() {
   if (window.localStorage.getItem("customer") == null) {
     getCustomers().then((res) => {
+      //TODO: aggiungere data di affitto ai clienti
       // mettere i dati nell'oggetto
       customerList = res;
       // mettere i dati nel localstorage
@@ -112,11 +113,15 @@ function redrawCustomerTable() {
   let tableBody = document.getElementById("customer-table");
   let rowTable = "";
   customerList.forEach((customer) => {
+    //TODO: Aggiungere data di affitto ai clienti
     rowTable += `
-    <tr>
+    <tr class="text-center">
       <td>${customer.name}</td>
       <td>${customer.email}</td>
-      <td><button class="btn btn-sm btn-danger">Cancella</button></td>`;
+      <td>${"13/05/2020"}</td>
+      <td>${"Subaru Baracca"}</td>
+      <td><button class="btn btn-sm btn-secondary text-center"><i class="fas fa-arrow-left"></i></button></td>
+      <td><button class="btn btn-sm btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button></td>`;
   });
   tableBody.innerHTML = rowTable;
 }
