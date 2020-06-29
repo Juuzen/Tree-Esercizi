@@ -4,6 +4,8 @@ const SERVER_URL = "http://localhost:3000";
 const USER_HTML = "/users";
 
 const BRANDURL = "https://vpic.nhtsa.dot.gov/api/vehicles/GetMakesForVehicleType/car?format=json";
+const VEHICLEURL = "https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeId/";
+const VEHICLEURLSUFFIX = "?format=json";
 
 /* Controllo del login */
 
