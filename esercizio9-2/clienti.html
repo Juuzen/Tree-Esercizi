@@ -57,14 +57,21 @@
     <div class="container-fluid">
       <div class="row mt-4">
         <div class="col-12 col-md-6 offset-md-3">
-          <button 
-            type="button" 
-            class="btn btn-primary mb-4" 
-            data-toggle="modal"
-            data-target="#addCustomerModal">
-            <i class="fas fa-plus"></i> Nuovo Cliente
-          </button>
-          
+          <div class="form-row">
+            <div class="col">
+              <button 
+                type="button" 
+                class="btn btn-primary mb-4" 
+                data-toggle="modal"
+                data-target="#addCustomerModal">
+                <i class="fas fa-plus"></i> Nuovo Cliente
+              </button>
+            </div>
+            <div class="col-auto">
+              <input type="text" class="form-control" placeholder="Inserisci indirizzo email...">
+            </div>
+          </div>
+
           <table class="table">
             <thead>
                 <tr class="text-center">                            
@@ -76,10 +83,11 @@
                     <th scope="col">Cancella</th>
                 </tr>
             </thead>
+              
             <tbody id="customer-table"></tbody>
+          </div>
         </div>
       </div>
-    </div>
 
     <!-- Modale -->
 
@@ -94,7 +102,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form name="customerForm" method="post" action="clienti.html">
+                    <form name="customerForm" method="post" action="#">
                         <div class="form-group">
                             <label>Nome</label>
                             <input class="form-control customerModalInput" id="custName" type="text" name="custName" placeholder="Inserisci il nome">
@@ -139,6 +147,8 @@
     ></script>
 
     <script src="./js/auth.js"></script>
-    <script src="./js/clienti.js"></script>
+    <script src="./js/clienti2.js"></script>
+    <script src="./js/setup.js"></script>
+    
   </body>
 </html>
