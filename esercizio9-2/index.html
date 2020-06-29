@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.css"
+    />
+    <link rel="stylesheet" href="./css/login.css" />
+    <link rel="stylesheet" href="./css/font-awesome.css" />
+
+    <title>Esercizio 9: Garage</title>
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <!-- h100 prende il 100% dell'altezza del padre -->
+      <form class="h-100" name="loginForm" action="affitti.html" method="POST">
+        <div class="row h-100">
+          <div
+            class="col-12 col-md-6 offset-md-3 d-flex align-items-center justify-content-center"
+          >
+            <div class="form-box">
+              <p class="h2">Esercizio 9: Garage</p>
+              <div class="form-group">
+                <label>Indirizzo mail</label>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="esempio@mail.it"
+                  class="form-control"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label>Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  class="form-control"
+                  required
+                />
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">
+                Accedi
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
+
+  <script src="./node_modules/js-sha512/src/sha512.js"></script>
+  <script src="./js/user.js"></script>
+  <script src="./js/login.js" defer></script>
+</html>

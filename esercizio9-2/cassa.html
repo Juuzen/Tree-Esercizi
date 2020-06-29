@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.css"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/cassa.css" />
+    <link rel="stylesheet" href="./css/font-awesome.css" />
+
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <div class="loader"></div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Garage V1.0</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="./affitti.html">Affitto</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./clienti.html">Clienti</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="./cassa.html">Cassa</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./garage.html">Garage</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link bg-danger text-white" onclick="logout()"
+              >Esci
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <script src="./js/auth.js"></script>
+    <script src="./js/cassa.js"></script>
+  </body>
+</html>
