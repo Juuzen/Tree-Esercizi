@@ -8,10 +8,6 @@ class Customer {
     this.customers = null;
   }
 
-  test = () => {
-    alert("ciao");
-  };
-
   redrawCustomerTable = () => {
     let tableBody = document.getElementById("customer-table");
     tableBody.innerHTML = "";
@@ -26,8 +22,10 @@ class Customer {
         <td>${customer.rentDate}</td>
         <td>${customer.rentCar}</td>
         <td><button class="btn btn-sm btn-secondary text-center"><i class="fas fa-arrow-left"></i></button></td>
-        <td><button class="btn btn-sm btn-danger" id="delete-customer-${customer.id}" onClick="CUSTOMER.removeCustomer("${customer.name}", ${customer.id});"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+        <td><button class="btn btn-sm btn-danger" id="delete-customer-${customer.id}" onclick="CUSTOMER.removeCustomer("${customer.name}", ${customer.id});"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
       </tr>`;
+
+    
     });
   };
 

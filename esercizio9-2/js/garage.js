@@ -25,6 +25,24 @@ function getBrands() {
   return brand$;
 }
 
+function test () {
+  getBrands().then
+}
+
+function loadBrands () {
+  getBrands().then((brands) => {
+    brands.Results.forEach((brand) => {
+      let brandObj = {
+        brandName : brand.MakeName
+      };
+
+      let brandModels = await showModels(brand.MakeId);
+      let modelArray = brandModels.map();
+
+    })
+  })
+}
+
 function showBrands() {
   const accordion = document.getElementById("car-brands");
   let card = "";
