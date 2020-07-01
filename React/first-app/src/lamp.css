@@ -1,0 +1,11 @@
+.lamp-container {
+  padding: 30px;
+}
+
+.lamp-on {
+  background-color: darkorange;
+}
+
+.lamp-off {
+  background-color: darkgrey;
+}
