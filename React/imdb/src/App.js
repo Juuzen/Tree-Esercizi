@@ -1,26 +1,45 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import Movielist from "./components/Movielist.js";
+import "bootstrap/dist/css/bootstrap.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const APIKEY = "669e5564";
+const APIURL = "http://www.omdbapi.com/?apikey=";
+
+function fetchMovies(searchString = "game") {
+  return fetch(APIURL + APIKEY + "&s=" + searchString).then(res => res.json());
+}
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      movies : [],
+      totalMovies : 0
+    };
+  }
+
+  componentDidMount() {
+    fetchMovies().then((list) => {
+      this.setState({
+        movies : list.Search,
+        totalMovies : list.totalResults
+      })
+    })
+  }
+
+  render() {
+    return (
+      <div className="container">
+        <div className="row">
+          <div className="col-8 offset-2 text-center">
+            <h1>I miei film preferiti</h1>
+            <Movielist movies={this.state.movies}></Movielist>
+          </div>
+        </div>
+
+      </div>
+    )
+  }
 }
 
 export default App;
