@@ -6,7 +6,7 @@ function Movielist(props) {
     <div className="row">
       {
         props.movies.map ((movie) => {
-        return <MovieItem key={movie.imdbID} poster={movie.Poster} title={movie.Title} />;
+        return <MovieItem key={movie.imdbID} movie = {movie} />;
         })
       }
     </div>
