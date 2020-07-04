@@ -1,0 +1,61 @@
+.frame-container {
+  position: relative;
+  width: 600px;
+  height: 400px;
+}
+
+.frame {
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  height: 100%;
+  background-image: url("https://via.placeholder.com/600x400/000345?text=1");
+}
+
+.container-miniature {
+  position: relative;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  width: 600px;
+  height: 150px;
+  background-color: red;
+}
+
+.miniature {
+  position: relative;
+  float: left;
+  width: 100px;
+  height: 100px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 25px;
+}
+
+.last {
+  color: white;
+  font-size: 40px;
+  background-color: black;
+}
+
+.counter-text {
+  line-height: 0px;
+  margin-left: 25px;
+}
+
+.arrows{
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  padding: 10px;
+  background-color: rgba(238, 238, 238, 0.308);
+  cursor: pointer;    
+}
+.arrows:hover{
+  background-color: rgba(238, 238, 238, 0.877);
+}
+.left{
+  left: 30px;
+}
+.right{
+  right: 30px;
+}
