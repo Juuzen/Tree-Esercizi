@@ -4,6 +4,14 @@ const SITE_PAGE = SITE_URL.substring(SITE_URL.lastIndexOf("/") + 1);
 
 window.onload = () => {
   Auth.login();
-  var CUSTOMER = new Customer();
-  CUSTOMER.loadCustomers();
+  switch (SITE_PAGE) {
+    case "clienti.html":
+      loadCustomers();
+      break;
+    case "garage.html":
+      loadGarage();
+      break;
+    default:
+    // code block
+  }
 };
