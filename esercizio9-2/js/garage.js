@@ -1,65 +1,111 @@
-const BRANDURL =
-  "https://vpic.nhtsa.dot.gov/api/vehicles/GetMakesForVehicleType/car?format=json";
-const VEHICLEURL =
-  "https://vpic.nhtsa.dot.gov/api/vehicles/fetchModelsForMakeId/";
-const VEHICLEURLSUFFIX = "?format=json";
+const VEHICLE_URL = "https://vpic.nhtsa.dot.gov/api/vehicles/";
+const BRAND_URL = "GetMakesForVehicleType/car?format=json";
+const MODEL_URL = "GetModelsForMakeId/";
+const MODEL_URLSUFFIX = "?format=json";
 
 const LS = window.localStorage;
 var garageList = [];
 
-redrawGarageTable = () => {};
+function redrawGarageTable() {
+  const accordion = document.getElementById("car-brands");
 
-loadGarage = () => {
+  garageList.forEach((brand) => {
+    accordion.innerHTML += `
+      <div class="card">
+        <div class="card-header" id="heading${brand.id}">
+          <h5 class="mb-0">
+            <button class="btn btn-link" data-toggle="collapse" data-target="#collapse-${brand.id}" aria-expanded="true" aria-controls="collapse-${brand.id}">
+      ${brand.name}
+      </button>
+    </h5>
+  </div>
+
+  <div id="collapse-${brand.id}" class="collapse" aria-labelledby="heading${brand.id}" data-parent="#car-brands">
+    <div class="card-body">
+      <ul id="brand-list-${brand.id}"></ul>
+    </div>
+  </div>
+</div>
+  `;
+
+    brand.vehicles.forEach((model) => {
+      modelList = document.getElementById("brand-list-" + brand.id);
+      modelList.innerHTML += `<li>${model.name}</li>`;
+    });
+  });
+}
+
+async function loadGarage2() {
+  // qua mi fetcho solo i brand
+  await fetchBrands().then((brandList) => {
+    for (brand of brandList.Results) {
+      var brandObj = {};
+      brandObj["id"] = brand.MakeId;
+      brandObj["name"] = brand.MakeName;
+      brandObj["vehicles"] = [];
+      garageList.push(brandObj);
+    }
+  });
+
+  let promArray = garageList.map(function(elem, index) {
+    return new Promise()
+  })
+
+  // qua mi fetcho solo i modelli
+  garageList.forEach(brand => {
+    fetchModels(brand.id).then((modelList) => {
+      for (model of modelList.Results) {
+        let modelObj = {};
+        modelObj["id"] = model.Model_ID;
+        modelObj["name"] = model.Model_Name;
+        modelObj["rentedBy"] = "";
+        modelObj["rentDate"] = "";
+        brand.vehicles.push(modelObj);
+      }
+    });
+  });
+
+  LS.setItem("rentals", JSON.stringify(garageList));
+}
+
+async function loadGarage() {
   if (LS.getItem("rentals") === null) {
-    // mi costruisco la garageList
-    garageList = getBrands().then((brandList) => {
-      let garage = [];
+    await fetchBrands().then(async (brandList) => {
       for (brand of brandList.Results) {
         var brandObj = {};
         brandObj["id"] = brand.MakeId;
         brandObj["name"] = brand.MakeName;
-        brandObj["vehicles"] = fetchModels(brand.MakeId).then((modelList) => {
-          console.log(modelList);
+        brandObj["vehicles"] = [];
+
+        await fetchModels(brand.MakeId).then((modelList) => {
+          for (model of modelList.Results) {
+            let modelObj = {};
+            modelObj["id"] = model.Model_ID;
+            modelObj["name"] = model.Model_Name;
+            modelObj["rentedBy"] = "";
+            modelObj["rentDate"] = "";
+            brandObj["vehicles"].push(modelObj);
+          }
         });
-
-        /*
-        for (model in modelList) {
-          let modelObj = {};
-          modelObj["id"] = model.Model_Id;
-          modelObj["name"] = model.Model_Name;
-          modelObj["rentedBy"] = "";
-          modelObj["rentDate"] = "";
-          brandObj["vehicles"].push(modelObj);
-        }
-        */
-
-        //garage.push(brandObj);
+        garageList.push(brandObj);
       }
-      return garage;
     });
-
-    //mi salvo la garageList nel localStorage
-    //LS.setItem("rentals", JSON.stringify(garageList));
+    LS.setItem("rentals", JSON.stringify(garageList));
   } else {
-    //garageList = JSON.parse(LS.getItem("rentals"));
+    garageList = JSON.parse(LS.getItem("rentals"));
   }
-  //redrawGarageTable();
-};
+  redrawGarageTable();
+}
 
 function fetchModels(brandID) {
-  let model$ = fetch(VEHICLEURL + brandID + VEHICLEURLSUFFIX).then((res) =>
-    res.json()
-  );
+  let model$ = fetch(
+    VEHICLE_URL + MODEL_URL + brandID + MODEL_URLSUFFIX
+  ).then((res) => res.json());
   return model$;
 }
 
-function showModels(brandID) {
-  let model$ = fetchModels(brandID).then((models) => models.Results);
-  return model$;
-}
-
-function getBrands() {
-  let brand$ = fetch(BRANDURL).then((res) => res.json());
+function fetchBrands() {
+  let brand$ = fetch(VEHICLE_URL + BRAND_URL).then((res) => res.json());
   return brand$;
 }
 

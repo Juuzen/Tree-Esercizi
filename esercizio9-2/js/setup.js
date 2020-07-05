@@ -9,7 +9,7 @@ window.onload = () => {
       loadCustomers();
       break;
     case "garage.html":
-      loadGarage();
+      loadGarage2();
       break;
     default:
     // code block
