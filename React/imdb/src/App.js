@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import Movielist from "./components/Movielist.js";
 import "bootstrap/dist/css/bootstrap.css";
-import Navbar from "./components/Navbar";
+//import Navbar from "./components/Navbar";
+import NavBar2 from "./components/NavBar2";
 
 const APIKEY = "669e5564";
 const APIURL = "http://www.omdbapi.com/?apikey=";
@@ -20,7 +21,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.searchMovie("home")
+    //this.searchMovie("home")
   }
 
   searchMovie = (termineRicerca = "") => {
@@ -38,6 +39,7 @@ class App extends Component {
   render() {
     return (
       <>
+      {/*         
         <Navbar onsearch={this.searchMovie} />
         <div className="container">
         
@@ -49,6 +51,8 @@ class App extends Component {
         </div>
 
       </div>
+      */}
+        <NavBar2 />
       </>
 
     )
