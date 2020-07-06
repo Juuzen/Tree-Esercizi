@@ -1,0 +1,29 @@
+.card-box {
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  padding: 15px;
+  margin: 20px;
+  box-shadow: 0px 10px 16px 0px rgba(135,135,135,0.63);
+  background-color: #eee;
+
+}
+
+.card-bar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-title {
+  margin-right: 16px;
+  font-size: large;
+  font-weight: bold;
+}
+
+.card-date {
+  font-size: small;
+  color: grey;
+}
+
+.content-hidden {
+  display: none;
+}
