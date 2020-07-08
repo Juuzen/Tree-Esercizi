@@ -1,0 +1,28 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.color-orange {
+  color: #ffb400;
+}
+
+.title {
+  font-size: 30px;
+}
+
+.subtitle {
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.date-text {
+  font-size: 24px;
+  color: #8898AA;
+  margin-left: 12px;
+  font-weight: 400;
+}

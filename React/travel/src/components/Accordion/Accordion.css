@@ -1,0 +1,33 @@
+.accordion {
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  border-radius: 5px;
+  background-color: #fff;
+  padding: 12px;
+}
+
+p.title {
+  font-size: 30px;
+  font-weight: bold;
+}
+.date {
+  font-size: 18px;
+  font-weight: 100;
+  color: #ccc;
+}
+
+.dropdown-arrow {
+  cursor: pointer;
+}
+
+.accordion-body {
+  background-color: #fff;
+  height: 0;
+  transition: max-height .25s ease-in-out;
+}
+
+.open {
+  min-height: auto;
+  max-height: 300px;
+}
+
+/* qui ci dovrebbe essere .close però se lo metto mi toglie tutto l'accordion (???) */
