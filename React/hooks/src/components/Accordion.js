@@ -1,42 +1,42 @@
-import React, { Component } from 'react'
-import AccordionContent from "./AccordionContent";
+import React from 'react'
+import { useState } from 'react';
 
-export default class Accordion extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      contentCollapsed : true
-    };
-  }
-  
+import "../css/Accordion.css";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 
-  showContent = () => {
-    this.setState((prevState) => {
-      return {
-        contentCollapsed : !prevState.contentCollapsed
-      }
-    })
+export default function Accordion({title, date, content}) {
+
+  const [collapseStatus, setCollapseStatus] = useState(true);
+
+  const toggleCollapse = () => {
+    setCollapseStatus(!collapseStatus);
   }
 
-  componentDidMount = () => {
-    console.log(this.state.contentCollapsed);
-  }
-
-  render() {
-    return (
-      <div className="card-box">
-        <div className="card-bar">
-          <div className="card-title-text">
-            <span className="card-title">{this.props.title}</span>
-            <span className="card-date">{this.props.date}</span>
+  return (
+    <>
+      <div className="accordion m-4">
+        <div className="row accordion-title">
+          <div className="d-flex align-items-center col-10">
+            <p className="title m-0 ml-3">{title}<span className="date ml-3">{date}</span></p>
           </div>
-          <div className="dropdown-btn">
-            <button onClick={this.showContent}>Espandi</button>
+          <div className="d-flex align-items-center justify-content-center col-2">
+            <FontAwesomeIcon onClick={toggleCollapse} className="dropdown-arrow" rotation={collapseStatus ? 0 : 180} icon={faAngleDown} />
           </div>
         </div>
-        <AccordionContent collapsed={this.state.contentCollapsed}/>
+        <div className="row">
+          <div className={`col-12 col-md-10 offset-md-1 accordion-body ${collapseStatus ? "close" : "open"}`}>
+            {
+              (collapseStatus ? "" : (
+                <div className="accordion-content">
+                  {content}
+                </div>
+              ))
+            }
+          </div>
+        </div>
       </div>
-    )
-  }
+    </>
+  )
 }

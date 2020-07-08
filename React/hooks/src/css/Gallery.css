@@ -1,0 +1,14 @@
+.photo-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.list {
+  list-style-type: none;
+
+}
+
+.photo {
+  width: 100px;
+  margin: 20px;
+}

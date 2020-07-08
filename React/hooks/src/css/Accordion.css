@@ -1,29 +1,33 @@
-.card-box {
-  border: 1px solid #ccc;
-  border-radius: 16px;
-  padding: 15px;
-  margin: 20px;
-  box-shadow: 0px 10px 16px 0px rgba(135,135,135,0.63);
-  background-color: #eee;
-
+.accordion {
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  border-radius: 5px;
+  background-color: #fff;
+  padding: 12px;
 }
 
-.card-bar {
-  display: flex;
-  justify-content: space-between;
-}
-
-.card-title {
-  margin-right: 16px;
-  font-size: large;
+p.title {
+  font-size: 30px;
   font-weight: bold;
 }
-
-.card-date {
-  font-size: small;
-  color: grey;
+.date {
+  font-size: 18px;
+  font-weight: 100;
+  color: #ccc;
 }
 
-.content-hidden {
-  display: none;
+.dropdown-arrow {
+  cursor: pointer;
 }
+
+.accordion-body {
+  background-color: #fff;
+  height: 0;
+  transition: max-height .25s ease-in-out;
+}
+
+.open {
+  min-height:200px;
+  max-height: 300px;
+}
+
+/* qui ci dovrebbe essere .close però se lo metto mi toglie tutto l'accordion (???) */
