@@ -1,0 +1,12 @@
+.text-container {
+  width: 400px;
+  height: 800px;
+}
+
+#red {
+  background-color: red
+}
+
+#green {
+  background-color: green;
+}
