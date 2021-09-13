@@ -1,0 +1,9 @@
+.accomodation-reminder {
+color:  #8898AA ;
+}
+
+.accomodation-reminder>span {
+    color: black;
+    font-weight: bold;
+    font-size: 16px;
+}

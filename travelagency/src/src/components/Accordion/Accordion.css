@@ -1,0 +1,45 @@
+.accordion {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.accordion-info{
+    color: #0063C9 !important;
+  }
+
+.title-accordion{
+    cursor: pointer;
+}
+
+p.title {
+    font-size: 30px;
+    color: #5B5959;
+    font-weight: bold;
+}
+
+.icon-arrow {
+    cursor: pointer;
+}
+
+.body-accordion {
+    background-color: #fff;
+    margin-bottom: 20px;
+    height: 0px;
+    transition: height .25s ease-in;
+}
+
+.open {
+    height: auto;
+}
+
+.close{
+    height: 0px;
+}
+
+.date-text{
+    font-size: 24px;
+    color: #8898AA;
+    font-weight: 300;
+}

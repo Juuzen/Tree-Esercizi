@@ -1,0 +1,8 @@
+.preview {
+    width: 90px;
+    height: 90px;
+
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}

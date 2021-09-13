@@ -1,0 +1,19 @@
+.contentImage{
+    margin-right: 10px;
+    width: 150px;
+    height: 150px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.content-lastImages{
+    width: 70px;
+    height: 70px;   
+    background-size: cover;
+    background-repeat: no-repeat; 
+    color: white;   
+}
+.overlayLastImage{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}

@@ -1,0 +1,66 @@
+.img-cover {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 300px;
+    margin-bottom: 15px;
+}
+
+.tags-accomodation {
+    padding: 7px 12px
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+.text-clamp {
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+
+}
+.place{
+    background-color: #B0DBEE;
+    border-radius: 100%;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    padding-top: 5px;
+}
+.activity{
+    background-color: #FDED9A;
+    border-radius: 100%;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    padding-top: 5px;
+}
+.transfer{
+    background-color: #FDD1DA;
+    border-radius: 100%;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    padding-top: 5px;
+}
+.giornata{
+    background-color: #FFB400;
+    border-radius: 100%;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    padding-top: 5px;
+}
+.column-timeline{
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+.dots{
+    background-repeat: repeat-y;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+}
